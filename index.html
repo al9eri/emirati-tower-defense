@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Emirati Tower Defense</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="game-shell">
+      <section class="play-panel" aria-label="Game playfield">
+        <div class="hud-bar" aria-live="polite">
+          <div class="stat">
+            <span>Dirhams</span>
+            <strong id="coins">0</strong>
+          </div>
+          <div class="stat">
+            <span>Family Patience</span>
+            <strong id="lives">0</strong>
+          </div>
+          <div class="stat">
+            <span>Wave</span>
+            <strong id="wave">0 / 8</strong>
+          </div>
+          <div class="stat wide">
+            <span>Status</span>
+            <strong id="status">Choose a tower</strong>
+          </div>
+        </div>
+
+        <div class="canvas-frame">
+          <canvas id="game" width="960" height="600" aria-label="Emirati tower defense game"></canvas>
+          <div id="toast" class="toast hidden"></div>
+        </div>
+      </section>
+
+      <aside class="control-panel" aria-label="Game controls">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">Dubai neighborhood defense</p>
+            <h1>Emirati Tower Defense</h1>
+          </div>
+          <button id="resetBtn" class="icon-btn" type="button" title="Reset game" aria-label="Reset game">R</button>
+        </div>
+
+        <div class="action-row">
+          <button id="waveBtn" class="primary-btn" type="button">Start Wave</button>
+          <button id="pauseBtn" class="secondary-btn" type="button">Pause</button>
+          <button id="speedBtn" class="secondary-btn" type="button">1x</button>
+        </div>
+
+        <section>
+          <h2>Towers</h2>
+          <div id="towerList" class="tower-list"></div>
+        </section>
+
+        <section class="tower-info" id="towerInfo">
+          <h2>Selected Spot</h2>
+          <p>Pick a tower, then click a marked spot beside Jumeirah Road.</p>
+        </section>
+
+        <section class="small-print">
+          <h2>Rules</h2>
+          <p>Stop the neighborhood chaos before it reaches the majlis. Upgrade towers by selecting them on the map.</p>
+        </section>
+      </aside>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>

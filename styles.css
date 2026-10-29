@@ -1,0 +1,369 @@
+:root {
+  --ink: #171717;
+  --muted: #66635c;
+  --paper: #f8f5ee;
+  --panel: #fffdf7;
+  --line: #d8d1c2;
+  --asphalt: #34373d;
+  --sea: #6cc7c9;
+  --date: #9a6a2f;
+  --flag-red: #cf2e2e;
+  --flag-green: #168a4a;
+  --gold: #d8a83b;
+  --blue: #2f68ad;
+  --shadow: 0 18px 45px rgba(28, 25, 20, 0.18);
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background:
+    linear-gradient(180deg, rgba(108, 199, 201, 0.18) 0 18%, transparent 18%),
+    var(--paper);
+  color: var(--ink);
+}
+
+button {
+  font: inherit;
+}
+
+.game-shell {
+  width: min(1420px, 100%);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 18px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.play-panel,
+.control-panel {
+  min-width: 0;
+}
+
+.hud-bar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(106px, 1fr)) minmax(190px, 1.4fr);
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.stat {
+  min-height: 60px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 253, 247, 0.92);
+  box-shadow: 0 8px 24px rgba(35, 31, 24, 0.08);
+}
+
+.stat span {
+  display: block;
+  font-size: 0.72rem;
+  line-height: 1.2;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.stat strong {
+  display: block;
+  margin-top: 3px;
+  font-size: clamp(1.05rem, 1.8vw, 1.45rem);
+  line-height: 1.15;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.canvas-frame {
+  position: relative;
+  width: 100%;
+  border: 1px solid #bcb3a0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #eadbbd;
+  box-shadow: var(--shadow);
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  touch-action: manipulation;
+  cursor: crosshair;
+}
+
+.toast {
+  position: absolute;
+  left: 50%;
+  top: 18px;
+  transform: translateX(-50%);
+  max-width: min(520px, calc(100% - 32px));
+  padding: 10px 14px;
+  border: 1px solid rgba(23, 23, 23, 0.18);
+  border-radius: 8px;
+  background: rgba(255, 253, 247, 0.94);
+  color: var(--ink);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
+  font-weight: 700;
+  text-align: center;
+  pointer-events: none;
+}
+
+.toast.hidden {
+  opacity: 0;
+}
+
+.control-panel {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 253, 247, 0.95);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: var(--flag-green);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+h1,
+h2,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: clamp(1.3rem, 2vw, 1.65rem);
+  line-height: 1.05;
+}
+
+h2 {
+  margin-bottom: 8px;
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  letter-spacing: 0;
+}
+
+.action-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 8px;
+}
+
+.primary-btn,
+.secondary-btn,
+.icon-btn,
+.tower-card button,
+.tower-actions button {
+  border: 1px solid rgba(23, 23, 23, 0.18);
+  border-radius: 8px;
+  min-height: 42px;
+  padding: 10px 12px;
+  color: var(--ink);
+  background: #fffaf0;
+  cursor: pointer;
+  transition:
+    transform 120ms ease,
+    box-shadow 120ms ease,
+    border-color 120ms ease;
+}
+
+.primary-btn {
+  background: var(--flag-red);
+  color: white;
+  border-color: #a92121;
+  font-weight: 900;
+}
+
+.secondary-btn,
+.icon-btn {
+  font-weight: 800;
+}
+
+.icon-btn {
+  width: 42px;
+  padding-inline: 0;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(40, 34, 25, 0.12);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.tower-list {
+  display: grid;
+  gap: 8px;
+}
+
+.tower-card {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff9ec;
+  overflow: hidden;
+}
+
+.tower-card button {
+  width: 100%;
+  min-height: 82px;
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  text-align: left;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.tower-card.selected {
+  border-color: var(--flag-green);
+  box-shadow: inset 4px 0 0 var(--flag-green);
+}
+
+.tower-card.locked {
+  opacity: 0.62;
+}
+
+.tower-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 0.86rem;
+  font-weight: 900;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+}
+
+.tower-name {
+  display: block;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.tower-desc {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.25;
+}
+
+.tower-cost {
+  align-self: start;
+  min-width: 54px;
+  color: var(--date);
+  font-weight: 900;
+  text-align: right;
+}
+
+.tower-info,
+.small-print {
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.tower-info p,
+.small-print p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.tower-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.tower-actions button:first-child {
+  background: var(--flag-green);
+  color: white;
+  border-color: #0f6337;
+  font-weight: 900;
+}
+
+.tower-actions button:last-child {
+  background: #fff6f6;
+  color: #9e2020;
+  font-weight: 900;
+}
+
+@media (max-width: 980px) {
+  .game-shell {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+
+  .control-panel {
+    order: -1;
+  }
+
+  .tower-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .hud-bar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stat.wide {
+    grid-column: span 2;
+  }
+
+  .tower-list {
+    grid-template-columns: 1fr;
+  }
+
+  .action-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .primary-btn {
+    grid-column: span 2;
+  }
+}
